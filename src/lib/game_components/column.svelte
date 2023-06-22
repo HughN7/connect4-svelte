@@ -24,7 +24,7 @@
 
         //Check if there's a winner after new piece
         let winner: string = checkForWinners($board)
-        console.log("-after checking for winners:", winner)
+
         if(winner !== " "){
             $game_won = true
             $game_winner = winner === "X" ? "Red" : "Yellow"
