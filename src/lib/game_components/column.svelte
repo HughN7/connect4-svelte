@@ -1,27 +1,38 @@
 <script lang="ts">
     import Slot from "./board_slot.svelte";
-    import { board, red_turn, turns } from "../../game_state";
-    import { checkForWinners } from "./game_logic";
+    import { board, red_turn, turns, game_won, game_winner } from "../../game_state";
+    import { checkForWinners, placePiece } from "./game_logic";
     
 
     export let column_id: number;
     
     function handleOnClick(){
-        let player: string = $red_turn ? "X" : "O"
 
-        for(let row_id: number = 5; row_id !== -1; row_id--){
-            
-            if($board[row_id][column_id] == " "){
-                $board[row_id][column_id] = player
-                $red_turn = !$red_turn //Switch to other player
-                $turns++
-                $turns = $turns //reactive assignment
-                break
-            }
-        }
+        if($game_won) return;
+
+        let player: string = $red_turn ? "X" : "O"
+        let placePiece_Parameters: Array<any> = placePiece([$board, $red_turn, $turns], column_id, player)
+        
+        $board = placePiece_Parameters[0]
+        $red_turn = placePiece_Parameters[1]
+        $turns = placePiece_Parameters[2]
+
+        //Reactive assignment
+        $board = $board
+        $red_turn = $red_turn
+        $turns = $turns
 
         //Check if there's a winner after new piece
         let winner: string = checkForWinners($board)
+        console.log("-after checking for winners:", winner)
+        if(winner !== " "){
+            $game_won = true
+            $game_winner = winner === "X" ? "Red" : "Yellow"
+            
+            //reactive assignment
+            $game_won = $game_won
+            $game_winner = $game_winner
+        }
 
     }
 

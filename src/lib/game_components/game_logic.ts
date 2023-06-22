@@ -5,15 +5,19 @@ export function checkForWinners(board: Array<Array<string>>){
     
     //Rows
     let winner: string = checkAllRows(board)
+    if(winner !== " ") return winner
     
     //Columns
     winner = checkAllColumns(board)
+    if(winner !== " ") return winner
 
     //Diagonal 1
     winner = checkPositiveDiagonal(board)
+    if(winner !== " ") return winner
 
     //Diagonal 2
     winner = checkNegativeDiagonal(board)
+    if(winner !== " ") return winner
 
     return winner
 }
@@ -100,4 +104,21 @@ function checkNegativeDiagonal(board: Array<Array<string>>){
     }
 
     return " "
+}
+
+export function placePiece(parameters: Array<any>, column_id: number, player: string){
+
+    let [board, red_turn, turns]: Array<any> = parameters
+
+    for(let row_id: number = 5; row_id !== -1; row_id--){
+            
+        if(board[row_id][column_id] == " "){
+            board[row_id][column_id] = player
+            red_turn = !red_turn //Switch to other player
+            turns++
+            break
+        }
+    }
+
+    return [board, red_turn, turns]
 }
