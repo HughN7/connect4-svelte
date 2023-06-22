@@ -1,7 +1,11 @@
 <script lang="ts">
-  import { red_turn } from "../game_state";
+    import { red_turn } from "../game_state";
+    import { fly } from "svelte/transition";
 
-    $: message = $red_turn ? "It's Red's Turn" : "It's Yellow's Turn"
+    //$: message = $red_turn ? "It's Red's Turn" : "It's Yellow's Turn"
+    const in_transition_duration: number = 275
+    const out_transition_duration: number = 100
+    let message = ["It's Red's Turn","It's Yellow's Turn"]
 
 </script>
 
@@ -10,7 +14,16 @@
 <div class="mt-auto w-screen self-end">
     <div class="flex justify-center text-center my-1.5 mb-0 bg-zinc-900 ">
         <div class="flex p-2">
-            <h1 class="text-xl text-yellow-50 font-sans font-semibold">{message}</h1>
+            {#if $red_turn}
+                <h1 in:fly={{x: 200, duration: in_transition_duration}} out:fly={{x: -200, duration: out_transition_duration}} class="text-xl text-yellow-50 font-sans font-semibold ease-in duration-75">
+                    It's Red's Turn
+                </h1>
+            {:else}
+                <h1 in:fly={{x: 200, duration: in_transition_duration}} out:fly={{x: -200, duration: out_transition_duration}} class="text-xl text-yellow-50 font-sans font-semibold ease-in duration-75">
+                    It's Yellow's Turn
+                </h1>
+            {/if}
+            
         </div>
     </div>
 </div>
