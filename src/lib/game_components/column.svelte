@@ -1,7 +1,7 @@
 <script lang="ts">
     import Slot from "./board_slot.svelte";
     import { board, red_turn, turns, game_won, game_winner } from "../../game_state";
-    import { checkForWinners, placePiece } from "./game_logic";
+    import { checkForWinners, placePiece } from "../../game_logic";
     
 
     export let column_id: number;
