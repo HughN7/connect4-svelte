@@ -7,7 +7,7 @@
 </script>
 
 
-<div class="w-fit h-fit">
+<div class="w-fit h-fit group">
     <Slot row_id={0} column_id={column_id}/>
     <Slot row_id={1} column_id={column_id}/>
     <Slot row_id={2} column_id={column_id}/>
