@@ -2,10 +2,8 @@
     import { red_turn } from "../game_state";
     import { fly } from "svelte/transition";
 
-    //$: message = $red_turn ? "It's Red's Turn" : "It's Yellow's Turn"
     const in_transition_duration: number = 275
     const out_transition_duration: number = 100
-    let message = ["It's Red's Turn","It's Yellow's Turn"]
 
 </script>
 

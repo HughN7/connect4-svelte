@@ -13,3 +13,4 @@ export const board = writable(
 )
 
 export const red_turn = writable(true) //Red's turn | Red goes first
+export const turns = writable(0)

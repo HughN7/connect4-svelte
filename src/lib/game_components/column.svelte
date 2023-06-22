@@ -1,7 +1,7 @@
 <script lang="ts">
     import Slot from "./board_slot.svelte";
-    import { board } from "../../game_state";
-    import { red_turn } from "../../game_state";
+    import { board, red_turn, turns } from "../../game_state";
+    import { checkForWinners } from "./game_logic";
     
 
     export let column_id: number;
@@ -14,13 +14,17 @@
             if($board[row_id][column_id] == " "){
                 $board[row_id][column_id] = player
                 $red_turn = !$red_turn //Switch to other player
+                $turns++
+                $turns = $turns //reactive assignment
                 break
             }
         }
+
+        //Check if there's a winner after new piece
+        let winner: string = checkForWinners($board)
+
     }
 
-
-    //6 rows and 7 columns
 </script>
 
 
