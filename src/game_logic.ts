@@ -113,7 +113,7 @@ export function placePiece(parameters: Array<any>, column_id: number, player: st
 
     let [board, red_turn, turns]: Array<any> = parameters
 
-    for(let row_id: number = 5; row_id !== -1; row_id--){
+    for(let row_id: number = row_length - 1; row_id !== -1; row_id--){
             
         if(board[row_id][column_id] == empty){
             board[row_id][column_id] = player
