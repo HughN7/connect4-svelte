@@ -7,7 +7,6 @@
 
 </script>
 
-
 <div class="mt-auto w-screen self-end">
     <div class="flex justify-center text-center my-1.5 mb-0 bg-zinc-900 ">
         <div class="flex p-2">
